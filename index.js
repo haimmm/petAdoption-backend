@@ -5,7 +5,7 @@ require('dotenv').config();
 const mongo = require("./modules/mongodb.module");
 
 //db connection
-const dbName = process.env.MONGO_DB_NAME;
+const dbName = process.env.MONGODB_NAME;
 mongo.connect(dbName)
 .then(() => {
     console.log(`[Mongo] Connected to '${dbName}' db`)
