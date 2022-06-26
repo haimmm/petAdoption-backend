@@ -12,7 +12,7 @@ const connect = async db_name => {
 }
 
 const dbName = process.env.MONGODB_NAME;
-mongo.connect(dbName)
+connect(dbName)
 .then(() => {
     console.log(`[Mongo] Connected to '${dbName}' db`)
 }).catch(err => {
