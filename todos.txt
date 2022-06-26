@@ -1,0 +1,17 @@
+-replace constants (keys, ports, saltrounds, maxAge, mastertoken) with .env @done 19.4.22
+-connect everything to DB after I learn MongoDb
+
+
+auth:
+    -register: change bcrypt to from sync to async
+    -refresh: test cookie after connecting to frontend
+
+pets:
+    -learn about storing photos and handle it on post + update pets @done with multer
+    -same for user permissions (only admin can add and edit) @done 19.4.22
+    -pet edit: remove existing pet and push the updated one when real db exists.
+
+modules:
+-handle permissions @done 19.4.22
+-add error object 
+-test multer and add functunality to pet.service
