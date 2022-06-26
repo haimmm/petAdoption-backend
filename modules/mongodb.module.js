@@ -23,6 +23,10 @@ const add = async (coll_name, record) => {
 }
 
 const find = async (coll_name, queries = [{}]) => {
+    console.log("TESTIING**");
+    await client.connect();
+    db = client.db(process.env.MONGODB_NAME);
+
     const collection = db.collection(coll_name);
     let results = [];
     if(!Array.isArray(queries)) queries = [queries];
