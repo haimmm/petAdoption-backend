@@ -11,15 +11,6 @@ const connect = async db_name => {
     db = client.db(db_name);
 }
 
-const dbName = process.env.MONGODB_NAME;
-connect(dbName)
-.then(() => {
-    console.log(`[Mongo] Connected to '${dbName}' db`)
-}).catch(err => {
-    console.log("Couldn't connect to mongoDb with error: ", err);
-});
-
-
 const close = async () => await client.close();
 
  
