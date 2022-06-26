@@ -10,7 +10,7 @@ mongo.connect(dbName)
 .then(() => {
     console.log(`[Mongo] Connected to '${dbName}' db`)
 }).catch(err => {
-    console.log("Couldn't connect to mongoDb with error: ", error);
+    console.log("Couldn't connect to mongoDb with error: ", err);
 })
 
 //express configuations
