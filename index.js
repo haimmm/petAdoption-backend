@@ -4,18 +4,28 @@ const cors = require('cors');
 require('dotenv').config();
 const mongo = require("./modules/mongodb.module");
 
-//db connection ====> not working with serverless deploy (vercel)
-// const dbName = process.env.MONGODB_NAME;
-// mongo.connect(dbName)
-// .then(() => {
-//     console.log(`[Mongo] Connected to '${dbName}' db`)
-// }).catch(err => {
-//     console.log("Couldn't connect to mongoDb with error: ", err);
-// })
-
 //express configuations
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+//db connection ===> wrapped by middleware because deploy is serverless(vercel).
+app.use((req,res,next) => {
+    if(!mongo.isConnected()){
+        console.log("HELLO FROM NOT CONNECTED")
+        const dbName = process.env.MONGODB_NAME;
+        mongo.connect(dbName)
+        .then(() => {
+            console.log(`[Mongo] Connected to '${dbName}' db`);
+            next()
+        }).catch(err => {
+            console.log("Couldn't connect to mongoDb with error: ", err);
+            next(err)
+        })
+    }else{
+        console.log("HELLO FROM CONNECTED")
+        next();
+    }
+})
 
 app.use(cookieParser());
 app.use(express.json());
