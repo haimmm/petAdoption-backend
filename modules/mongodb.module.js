@@ -4,11 +4,11 @@ const { MongoClient,  ObjectId} = require("mongodb");
 const uri = process.env.MONGODB_URI
 
 const client = new MongoClient(uri);
-global.db = null;
+let db = null;
 
 const connect = async db_name => {
     await client.connect();
-    global.db = client.db(db_name);
+    db = client.db(db_name);
 }
 
 const close = async () => await client.close();
@@ -23,7 +23,12 @@ const add = async (coll_name, record) => {
 }
 
 const find = async (coll_name, queries = [{}]) => {
-    const collection = global.db.collection(coll_name);
+    if(!db){
+        console.log("connecting mongo...");
+        await connect(process.env.MONGODB_NAME);
+    }
+
+    const collection = db.collection(coll_name);
     let results = [];
     if(!Array.isArray(queries)) queries = [queries];
     for await (const q of queries){
