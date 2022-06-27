@@ -16,6 +16,11 @@ const close = async () => await client.close();
  
 
 const add = async (coll_name, record) => {
+    if(!db){
+        console.log("connecting mongo...");
+        await connect(process.env.MONGODB_NAME);
+    }
+
     const collection = db.collection(coll_name);
     const result = await collection.insertOne(record);
     return result.insertedId.toString();
@@ -43,6 +48,11 @@ const find = async (coll_name, queries = [{}]) => {
  
 
 const update = async (coll_name, filters = {}, changes) => {
+    if(!db){
+        console.log("connecting mongo...");
+        await connect(process.env.MONGODB_NAME);
+    }
+
     const collection = db.collection(coll_name);
     return await collection.updateOne(filters, changes);
 }
@@ -50,6 +60,11 @@ const update = async (coll_name, filters = {}, changes) => {
  
 
 const remove = async (coll_name, filters = {}) => {
+    if(!db){
+        console.log("connecting mongo...");
+        await connect(process.env.MONGODB_NAME);
+    }
+
     const collection = db.collection(coll_name);
     return await collection.deleteMany(filters);
 }

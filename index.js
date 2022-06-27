@@ -4,14 +4,14 @@ const cors = require('cors');
 require('dotenv').config();
 const mongo = require("./modules/mongodb.module");
 
-//db connection
-const dbName = process.env.MONGODB_NAME;
-mongo.connect(dbName)
-.then(() => {
-    console.log(`[Mongo] Connected to '${dbName}' db`)
-}).catch(err => {
-    console.log("Couldn't connect to mongoDb with error: ", err);
-})
+//db connection ====> not working with serverless deploy (vercel)
+// const dbName = process.env.MONGODB_NAME;
+// mongo.connect(dbName)
+// .then(() => {
+//     console.log(`[Mongo] Connected to '${dbName}' db`)
+// }).catch(err => {
+//     console.log("Couldn't connect to mongoDb with error: ", err);
+// })
 
 //express configuations
 const app = express();
