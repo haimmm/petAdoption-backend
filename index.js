@@ -11,7 +11,6 @@ const PORT = process.env.PORT || 4000;
 //db connection ===> wrapped by middleware because deploy is serverless(vercel).
 app.use((req,res,next) => {
     if(!mongo.isConnected()){
-        console.log("HELLO FROM NOT CONNECTED")
         const dbName = process.env.MONGODB_NAME;
         mongo.connect(dbName)
         .then(() => {
@@ -22,7 +21,6 @@ app.use((req,res,next) => {
             next(err)
         })
     }else{
-        console.log("HELLO FROM CONNECTED")
         next();
     }
 })
