@@ -188,6 +188,7 @@ const unsave = async (req, res, next) => {
     }
 }
 
+//REPLACED WITH BINARY OBJECT ATTACHED TO THE PET OBJECT
 const getProfilePicture = (req, res, next) => {
     const fileName = req.params.name;
     var options = {

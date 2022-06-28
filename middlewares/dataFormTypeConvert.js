@@ -1,6 +1,5 @@
 const dataFormTypeConvert = async (req, res, next) => {
-    if(req.file) req.body.image = `http://localhost:${process.env.PORT || 4000}/pet/image/` + req.file.filename;
-
+    if(req.file) req.body.image = req.file;
     if(req.body.height) req.body.height = +req.body.height;
     if(req.body.weight) req.body.weight = +req.body.weight;
     if(req.body.hypoallergenic) req.body.hypoallergenic  = (req.body.hypoallergenic === 'true');

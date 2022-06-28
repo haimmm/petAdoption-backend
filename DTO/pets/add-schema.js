@@ -10,7 +10,7 @@ const addSchema = {
         bio: { type: 'string'},
         diet: { type: 'string'},
         bread: { type: 'string'},
-        image: { type: 'string'},
+        image: { type: 'object'},
         hypoallergenic: { type: 'boolean'},
     }
 }

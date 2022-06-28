@@ -1,4 +1,4 @@
-const { MongoClient,  ObjectId} = require("mongodb");
+const { MongoClient,  ObjectId, Binary} = require("mongodb");
 
 //const uri = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.w2bjd.mongodb.net/?retryWrites=true&w=majority`;
 const uri = process.env.MONGODB_URI
@@ -16,6 +16,10 @@ const isConnected = () => !!db;
  
 
 const add = async (coll_name, record) => {
+    if(record.image){ 
+        record.image = Binary(record.image.buffer);
+    }
+
     const collection = db.collection(coll_name);
     const result = await collection.insertOne(record);
     return result.insertedId.toString();
