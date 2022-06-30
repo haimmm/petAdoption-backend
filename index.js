@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 4000;
 app.use((req,res,next) => {
     if(!mongo.isConnected()){
         const dbName = process.env.MONGODB_NAME;
+        console.log("Connecting to mongo...");
         mongo.connect(dbName)
         .then(() => {
             console.log(`[Mongo] Connected to '${dbName}' db`);

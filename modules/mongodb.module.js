@@ -42,6 +42,10 @@ const find = async (coll_name, queries = [{}]) => {
  
 
 const update = async (coll_name, filters = {}, changes) => {
+    if(changes.$set.image){ 
+        changes.$set.image = Binary(changes.$set.image.buffer);
+    }
+
     const collection = db.collection(coll_name);
     return await collection.updateOne(filters, changes);
 }
