@@ -23,7 +23,7 @@ const createNewCookie = (res, name, data, maxAge) => {
     const options = {
         expires: maxAge,
         httpOnly: true,
-        sameSite: 'None',
+        sameSite: 'none',
         secure: true
     };
 

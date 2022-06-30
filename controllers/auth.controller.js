@@ -84,8 +84,6 @@ const login = async (req, res, next) => {
 
 const refresh = async (req, res, next) => {
   const token = req?.cookies?.refresh_token;
-  console.log("headers: ", req.headers);
-  console.log("Cookies: ", req.cookies);
   if (!token) {
     return next({message:"Token not found", status:"404"});
   }
