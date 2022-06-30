@@ -22,7 +22,7 @@ removeSession = async _id =>{
 const createNewCookie = (res, name, data, maxAge) => {
     const options = {
         expires: maxAge,
-        httpOnly: true
+        // httpOnly: true
     };
 
     res.cookie(name, data, options);
