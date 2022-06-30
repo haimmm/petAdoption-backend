@@ -35,6 +35,7 @@ app.use(cors({
     credentials: true
 }))
 
+app.options('*', cors())
 app.use('/auth', require('./routes/auth.route'));
 app.use('/pet', require('./routes/pet.route'));
 app.use('/user', require('./routes/user.route'));
